@@ -47,10 +47,11 @@ def listarPontos():
 # Nem todos os pontos cadastrados possuem telefone, então primeiro será verificado em cada linha se a terceira coluna está vazia (coluna telefone).
 # Se estiver, será exibida mensagem de telefone não cadastrado no respectivo campo.
     for row in array:
-        if (row[3] == ''):
-            print(' Nome do ponto: ' + row[2] + '\n Telefone: Telefone não cadastrado'  + '\n Endereço: ' + row[4] + row[5] + '\n\n')
+        if (row[3] == ' '):
+            #print(' Nome do ponto: ' + row[2] + '\n Telefone: Telefone não cadastrado.'  + '\n Endereço: ' + row[4] + row[5] + '\n\n')
+            print(' Nome do ponto: {} \n  Telefone: Telefone não cadastrado. \n  Endereço: {} {} \n'.format(row[2], row[4], row[5]))
         else:
-            print(' Nome do ponto: ' + row[2] + '\n Telefone: ' + row[3] + '\n Endereço: ' + row[4] + row[5] + '\n\n')
+            print(' Nome do ponto: {} \n  Telefone:{} \n  Endereço: {} {}'.format(row[2], row[3], row[4], row[5]))
 
 
 # Função pergunta a localização do usuário (latitude e longitude) e armazena nas variáveis 'lon1' e 'lat1'.
@@ -93,13 +94,7 @@ def buscarLog():
     
     for row in array:
         if (row[4] == log):
-            print(' Nome do ponto: ' + row[2] + '\n Endereço do ponto: ' + row[4] + ' ' + row[5] + '\n')
-
-
-# Função para encerrar o programa.
-def fecharProg():
-    print ("\n" * 2)
-    print('Programa encerrado! \n\n\n')
+            print(' Nome do ponto: {} \n Endereço do ponto: {} {} \n '.format(row[4], row[5]))
 
 
 # Função que pergutna se o usuário deseja voltar ao menu.  
