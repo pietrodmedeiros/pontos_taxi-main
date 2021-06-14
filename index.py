@@ -20,7 +20,7 @@ def menu():
         1. Listar todos os pontos de taxi  
         2. Informar localização  
         3. Encontrar pontos próximos
-        4. Buscar pontos por logaradouro
+        4. Buscar pontos por logradouro
         5. Fechar o pograma
         
         >: '''))
