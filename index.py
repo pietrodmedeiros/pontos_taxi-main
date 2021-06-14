@@ -1,5 +1,6 @@
 
 from math import dist, radians, sin, cos, sqrt, asin
+from time import sleep
 
 # Fazer leitura do arquivo 'pontos_taxi.csv'
 import csv 
@@ -39,9 +40,13 @@ def menu():
         buscarLog()
         voltarMenu()
     elif resp == 5:
-        print(' Encerrando programa... \n ... \n ... \n Programa encerrado!') 
+        print(' Encerrando programa...')
+        sleep(1)
+        print(' \n ... \n')
+        sleep(1)
+        print(' Programa encerrado!')
         exit()
-    else: 
+    else:
         print('Valor inválido. Por favor insira um valor válido.')
 
 
@@ -113,10 +118,10 @@ def voltarMenu():
         if (voltar == 'S'):
             menu()
         elif (voltar == 'N'):
-            print(' Encerrando programa... \n ... \n ... \n Programa encerrado!')
             exit()
         else:
             print('Valor inválido. Por favor insira um valor válido.')
+
 
 
 # Após a escolha da opção, o programa define qual a respectiva função que será acionada.
