@@ -22,7 +22,7 @@ def menu():
         5. Fechar o pograma
         
         >: '''))
-
+# Conforme a resposta do usuário, o programa chama a função correta.
     if resp == 1:
         listarPontos()
         voltarMenu()
@@ -57,12 +57,18 @@ def listarPontos():
 # Função pergunta a localização do usuário (latitude e longitude) e armazena nas variáveis 'lon1' e 'lat1'.
 def informarLoc():
     print(' ')
+    global lon1
+    global lon2
     lon1 = input('Digite a longitude: \n  ')
     lat1 = input('Digite a latitude \n  ')
     return lat1, lon1
 
 
 # Função que lista os 3 pontos mais próximos da localização inserida pelo usuário.
+# Ainda não está pronta.
+# [] Converter os valores de lat e lon para float
+# [] Trocar , por .
+# [] 
 def encontrarPontos():
     dist = []
     for row in array:
@@ -72,7 +78,7 @@ def encontrarPontos():
         return dist
 
 
- 
+# Função que faz o cálculo para dizer a distância do usuário para o ponto de taxi.
 def haversine(lat1, lon1, lat2, lon2):
     R = 6372.8  # Earth radius in kilometers
     dLat = radians(lat2 - lat1)
@@ -95,7 +101,9 @@ def buscarLog():
     for row in array:
         if (row[4] == log):
             print(' Nome do ponto: {} \n Endereço do ponto: {} {} \n '.format(row[4], row[5]))
-
+        else:
+            print('Nenhum ponto de taxi encontrado.')
+# bug: Está imprimindo a frase acima para linha... Deve imprimir apenas uma vez.
 
 # Função que pergutna se o usuário deseja voltar ao menu.  
 def voltarMenu():
