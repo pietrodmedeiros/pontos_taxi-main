@@ -5,7 +5,9 @@ from math import dist, radians, sin, cos, sqrt, asin
 import csv 
 csvfile = open('pontos_taxi.csv', encoding="utf8")
 array = csv.reader(csvfile, delimiter=';', quotechar=';') # Colocar o texto do csv na variável 'array'
-
+pontosTaxi = []
+for row in array:
+    pontosTaxi.append(row)
 
 # Texto do menu do progarma
 def menu():
@@ -36,7 +38,8 @@ def menu():
     elif resp == 4: 
         buscarLog()
         voltarMenu()
-    elif resp == 5: 
+    elif resp == 5:
+        print(' Encerrando programa... \n ... \n ... \n Programa encerrado!') 
         exit()
     else: 
         print('Valor inválido. Por favor insira um valor válido.')
@@ -46,12 +49,11 @@ def menu():
 def listarPontos():   
 # Nem todos os pontos cadastrados possuem telefone, então primeiro será verificado em cada linha se a terceira coluna está vazia (coluna telefone).
 # Se estiver, será exibida mensagem de telefone não cadastrado no respectivo campo.
-    for row in array:
+    for row in pontosTaxi:
         if (row[3] == ' '):
-            #print(' Nome do ponto: ' + row[2] + '\n Telefone: Telefone não cadastrado.'  + '\n Endereço: ' + row[4] + row[5] + '\n\n')
             print(' Nome do ponto: {} \n  Telefone: Telefone não cadastrado. \n  Endereço: {} {} \n'.format(row[2], row[4], row[5]))
         else:
-            print(' Nome do ponto: {} \n  Telefone:{} \n  Endereço: {} {}'.format(row[2], row[3], row[4], row[5]))
+            print(' Nome do ponto: {} \n  Telefone:{} \n  Endereço: {} {} \n'.format(row[2], row[3], row[4], row[5]))
 
 
 # Função pergunta a localização do usuário (latitude e longitude) e armazena nas variáveis 'lon1' e 'lat1'.
@@ -96,14 +98,14 @@ def haversine(lat1, lon1, lat2, lon2):
 
 # Função que imprime os Pontos de Taxi na rua que o usuário inserir.
 def buscarLog():
-    log = input('Digite o logradouro ou parte dele: \n  ').upper()
-    
-    for row in array:
-        if (row[4] == log):
-            print(' Nome do ponto: {} \n Endereço do ponto: {} {} \n '.format(row[4], row[5]))
-        else:
-            print('Nenhum ponto de taxi encontrado.')
-# bug: Está imprimindo a frase acima para linha... Deve imprimir apenas uma vez.
+    log = input('Digite o logradouro ou parte dele: \n  ').upper().strip()
+    i = 0
+    for row in range(0, len(pontosTaxi)):
+        if log in pontosTaxi[row][4]:
+            print('Ponto encontrado: ', pontosTaxi[row][2:6])
+            i += row
+    if i == 0:
+        print('Nenhum ponto de taxi encontrado.')
 
 # Função que pergutna se o usuário deseja voltar ao menu.  
 def voltarMenu():
@@ -111,6 +113,7 @@ def voltarMenu():
         if (voltar == 'S'):
             menu()
         elif (voltar == 'N'):
+            print(' Encerrando programa... \n ... \n ... \n Programa encerrado!')
             exit()
         else:
             print('Valor inválido. Por favor insira um valor válido.')
